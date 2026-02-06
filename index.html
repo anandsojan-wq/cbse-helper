@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Light Theme Variables */
+            /* Theme Variables */
             --bg-color: #6c5ce7;
             --bg-pattern: #a29bfe;
             --glass-bg: rgba(255, 255, 255, 0.75);
@@ -22,19 +22,6 @@
             --shadow: rgba(0, 0, 0, 0.1);
         }
 
-        /* Dark Theme Variables */
-        .dark-mode {
-            --bg-color: #1e1e2e;
-            --bg-pattern: #313244;
-            --glass-bg: rgba(30, 30, 46, 0.85);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-main: #ffffff;
-            --text-sub: #b2bec3;
-            --input-bg: rgba(0, 0, 0, 0.3);
-            --btn-yellow: #f1c40f;
-            --shadow: rgba(0, 0, 0, 0.4);
-        }
-
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
@@ -47,13 +34,12 @@
             justify-content: center;
             align-items: center;
             padding: 20px 0;
-            transition: background 0.3s ease;
         }
 
         /* Floating Icons */
         .floating-icon {
             position: absolute; font-size: 3rem; opacity: 0.15; z-index: 0;
-            animation: float 8s ease-in-out infinite; pointer-events: none; filter: blur(1px);
+            animation: float 8s ease-in-out infinite; pointer-events: none;
         }
         .icon-1 { top: 10%; left: 8%; animation-delay: 0s; }
         .icon-2 { bottom: 15%; right: 8%; animation-delay: 2s; }
@@ -61,28 +47,14 @@
         .icon-4 { bottom: 10%; left: 15%; font-size: 2.5rem; animation-delay: 1s; }
         @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-25px) rotate(10deg); } }
 
-        /* Theme Switch */
-        .theme-switch {
-            position: absolute; top: 20px; right: 20px;
-            background: var(--glass-bg); border: 2px solid var(--text-main);
-            border-radius: 50%; width: 45px; height: 45px;
-            display: flex; justify-content: center; align-items: center;
-            cursor: pointer; font-size: 20px; z-index: 50;
-            box-shadow: 0 4px 0 var(--text-main); transition: all 0.2s;
-            backdrop-filter: blur(10px);
-        }
-        .theme-switch:active { transform: translateY(4px); box-shadow: none; }
-
         /* Main Card */
         .container {
             position: relative; z-index: 10;
             background: var(--glass-bg); backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             width: 90%; max-width: 420px;
             border-radius: 24px; padding: 30px; text-align: center;
             box-shadow: 0 15px 35px var(--shadow);
             border: 2px solid var(--glass-border); margin-bottom: 20px;
-            transition: all 0.3s ease;
         }
 
         .streak-badge {
@@ -152,7 +124,7 @@
             border-radius: 16px;
             color: var(--text-main); font-weight: 800; font-size: 14px;
             text-decoration: none;
-            box-shadow: 0 4px 0 var(--text-main); /* Hard shadow matches theme */
+            box-shadow: 0 4px 0 var(--text-main);
             transition: transform 0.1s;
             box-sizing: border-box;
         }
@@ -165,27 +137,14 @@
             font-size: 12px; font-style: italic; color: var(--text-main); font-weight: 500;
         }
         .dev-footer { margin-top: 10px; font-size: 12px; color: rgba(255, 255, 255, 0.6); font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
-        
-        .toast {
-            position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px);
-            background: white; border: 3px solid #2d3436; padding: 10px 20px;
-            border-radius: 30px; font-weight: 700; z-index: 100;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex; align-items: center; gap: 10px; font-size: 14px;
-        }
-        .toast.show { transform: translateX(-50%) translateY(0); }
-        .toast.error { border-color: var(--error); color: var(--error); }
     </style>
 </head>
 <body>
 
-    <div class="theme-switch" onclick="toggleTheme()" id="theme-btn">🌙</div>
     <div class="floating-icon icon-1">⚡</div>
     <div class="floating-icon icon-2">📝</div>
     <div class="floating-icon icon-3">🎯</div>
     <div class="floating-icon icon-4">📚</div>
-
-    <div id="toast" class="toast"><span id="toast-icon">⚠️</span><span id="toast-msg">Error</span></div>
 
     <div class="container">
         <div class="streak-badge">🔥 0 Day Streak</div>
@@ -235,6 +194,15 @@
                 <div class="arrow">▶</div>
             </a>
 
+            <a href="https://class-x-guide-bot.vercel.app/" class="tool-card">
+                <div class="card-icon" style="background:#a29bfe; color: white;">🤖</div>
+                <div class="card-text">
+                    <h3>AI Study Companion</h3>
+                    <p>Instant Doubt Solving</p>
+                </div>
+                <div class="arrow">▶</div>
+            </a>
+
             <a href="https://icmedu.in/" target="_blank" class="btn-about">
                 ℹ️ About ICM Education
             </a>
@@ -246,59 +214,37 @@
     <div class="dev-footer">Developed By ICM Computers</div>
 
 <script>
+    // Note: The Google Script URL handles storing student data (Name, School, Phone)
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyE8NfuO7OeGWrI7XC_CQrTmuAzUfbMfZRIWPp5MGglFiSwBlJkIBXo-k8gDRFsezqQHw/exec";
     
-    function toggleTheme() {
-        document.body.classList.toggle('dark-mode');
-        const btn = document.getElementById('theme-btn');
-        if(document.body.classList.contains('dark-mode')) {
-            btn.innerText = "☀️"; localStorage.setItem('cbse_theme', 'dark');
-        } else {
-            btn.innerText = "🌙"; localStorage.setItem('cbse_theme', 'light');
-        }
-    }
-    if(localStorage.getItem('cbse_theme') === 'dark') { toggleTheme(); }
-
+    // Exam Countdown Logic
     const examDate = new Date("2026-02-17"); const today = new Date();
     const diffTime = examDate - today;
     let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
     if (diffDays < 0) diffDays = 0; document.getElementById("days-left").innerText = diffDays;
 
-    // --- NEW QUOTE LOGIC (Random Every Refresh) ---
+    // Quote Fetcher
     async function fetchQuote() {
         const quoteBox = document.getElementById('daily-quote');
-        // Add timestamp to prevent browser caching
         const apiUrl = 'https://api.quotable.io/random?tags=inspirational|success&maxLength=100&t=' + new Date().getTime();
-        
         try {
             const response = await fetch(apiUrl);
             if (!response.ok) throw new Error('API Error');
             const data = await response.json();
             quoteBox.innerText = data.content;
         } catch (error) {
-            // EXPANDED FALLBACK LIST (15+ Quotes) for variety even if API fails
             const fallbackQuotes = [
-                "Success is the sum of small efforts repeated daily.", 
-                "Don't stop until you're proud.",
-                "Your future is created by what you do today.", 
-                "Mistakes are proof that you are trying.",
-                "Dream it. Believe it. Build it.", 
-                "Focus on progress, not perfection.",
-                "Action is the foundational key to all success.",
-                "Believe you can and you're halfway there.",
-                "It always seems impossible until it's done.",
-                "Don't watch the clock; do what it does. Keep going.",
-                "The secret of getting ahead is getting started.",
-                "Quality is not an act, it is a habit.",
-                "Study hard, for the well is deep, and our brains are shallow.",
-                "Education is the most powerful weapon which you can use to change the world.",
-                "Strive for progress, not perfection."
+                "Success is the sum of small efforts repeated daily.", "Don't stop until you're proud.",
+                "Your future is created by what you do today.", "Mistakes are proof that you are trying.",
+                "Dream it. Believe it. Build it.", "Focus on progress, not perfection.",
+                "Action is the foundational key to all success.", "Believe you can and you're halfway there."
             ];
             quoteBox.innerText = fallbackQuotes[Math.floor(Math.random() * fallbackQuotes.length)];
         }
     }
     fetchQuote();
 
+    // Phone Input Validation (Visual only)
     const phoneInput = document.getElementById('userPhone');
     phoneInput.addEventListener('input', function(e) {
         this.value = this.value.replace(/\D/g, ''); 
@@ -306,6 +252,7 @@
         if(this.value.length === 10) parent.classList.add('success'); else parent.classList.remove('success');
     });
 
+    // Check Login Status on Load
     window.onload = function() {
         const savedName = localStorage.getItem('cbse_student_name');
         if (savedName) {
@@ -326,20 +273,14 @@
         }
     };
 
-    function showToast(msg, type='error') {
-        const toast = document.getElementById('toast');
-        document.getElementById('toast-msg').innerText = msg;
-        toast.className = type === 'error' ? 'toast show error' : 'toast show';
-        setTimeout(() => toast.className = 'toast', 3000);
-    }
-
+    // Form Submission
     document.getElementById('studentForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const name = document.getElementById('userName').value;
         const school = document.getElementById('userSchool').value;
         const phone = document.getElementById('userPhone').value;
 
-        if (phone.length !== 10) { showToast("Phone number must be exactly 10 digits!"); return; }
+        if (phone.length !== 10) { alert("Phone number must be exactly 10 digits!"); return; }
 
         const btn = document.getElementById('submitBtn');
         btn.innerText = "Connecting...";
@@ -351,7 +292,7 @@
             localStorage.setItem('cbse_student_name', name);
             location.reload(); 
         }).catch(err => {
-            showToast("Network Error. Check Internet.");
+            alert("Network Error. Check Internet.");
             btn.innerText = "PROCEED TO LOGIN ▶";
         });
     });
