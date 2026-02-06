@@ -147,7 +147,7 @@
         .btn-about {
             display: flex; align-items: center; justify-content: center; gap: 8px;
             width: 100%; padding: 12px; margin-top: 10px;
-            border: 2px dashed var(--text-main); 
+            border: 2px dashed var(--text-main); /* Dashed to differentiate */
             border-radius: 16px; color: var(--text-main);
             text-decoration: none; font-weight: 700; font-size: 14px;
             background: rgba(255,255,255,0.3); transition: all 0.2s; box-sizing: border-box;
@@ -161,6 +161,7 @@
             font-size: 12px; font-style: italic; color: var(--text-main); font-weight: 500;
         }
         .dev-footer { margin-top: 10px; font-size: 12px; color: rgba(255, 255, 255, 0.6); font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+        
         .toast {
             position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px);
             background: white; border: 3px solid #2d3436; padding: 10px 20px;
@@ -187,7 +188,8 @@
         <div class="countdown-badge"><span>⏳</span> <span id="days-left">00</span> Days to Exams</div>
 
         <div id="registration-view">
-            <h1>UPLIFT Class X</h1> <div class="social-proof">
+            <h1>UPLIFT Class X</h1>
+            <div class="social-proof">
                 <div class="avatar-pile">
                     <div class="avatar" style="background:#ff7675">👩‍🎓</div>
                     <div class="avatar" style="background:#74b9ff">👨‍🏫</div>
