@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBSE 10th Exam Ace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-purple: #6c5ce7;
+            --light-purple: #a29bfe;
+            --btn-yellow: #f9d976;
+            --text-dark: #2d3436;
+            --success-green: #00b894;
+            --card-white: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-purple);
+            background-image: radial-gradient(var(--light-purple) 15%, transparent 15%);
+            background-size: 25px 25px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto; /* Allow scrolling if content is tall */
+            padding: 20px 0;
+        }
+
+        /* --- Floating Backgrounds --- */
+        .floating-icon {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.2;
+            z-index: 0;
+            animation: float 6s ease-in-out infinite;
+            user-select: none;
+            pointer-events: none;
+        }
+        .icon-1 { top: 10%; left: 8%; animation-delay: 0s; }
+        .icon-2 { bottom: 15%; right: 8%; animation-delay: 1.5s; }
+        .icon-3 { top: 15%; right: 15%; font-size: 2rem; animation-delay: 2.5s; }
+        .icon-4 { bottom: 10%; left: 15%; font-size: 2.5rem; animation-delay: 3.5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(8deg); }
+        }
+
+        /* --- Main Container --- */
+        .container {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.96);
+            width: 90%;
+            max-width: 400px;
+            border-radius: 24px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 12px 12px 0px rgba(0,0,0,0.15);
+            border: 4px solid var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        /* --- Countdown Badge --- */
+        .countdown-badge {
+            background: var(--text-dark);
+            color: var(--btn-yellow);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        h1 { font-weight: 800; color: var(--text-dark); margin: 0; font-size: 26px; line-height: 1.2; }
+        .subtitle { font-size: 14px; color: #636e72; margin-bottom: 20px; font-weight: 500; }
+
+        /* --- Form Inputs --- */
+        .input-group { position: relative; margin-bottom: 15px; text-align: left; }
+        .input-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 18px; opacity: 0.6; }
+        
+        input {
+            width: 100%; padding: 16px 16px 16px 48px;
+            border: 3px solid #dfe6e9; border-radius: 14px;
+            background: #f8f9fa; box-sizing: border-box;
+            font-size: 15px; font-family: 'Poppins', sans-serif;
+            font-weight: 600; color: var(--text-dark);
+            transition: 0.2s;
+        }
+        input:focus { outline: none; border-color: var(--bg-purple); background: #fff; }
+
+        /* --- Action Buttons (Login & Tools) --- */
+        .btn-main, .tool-card {
+            width: 100%;
+            background: var(--btn-yellow);
+            border: 3px solid var(--text-dark);
+            border-radius: 16px;
+            cursor: pointer;
+            box-shadow: 0 6px 0 var(--text-dark);
+            transition: all 0.1s;
+            position: relative;
+            box-sizing: border-box;
+            text-decoration: none;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-main {
+            padding: 16px;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 16px;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        /* --- Tool Card Styling --- */
+        .tool-card {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px; /* Space between buttons */
+            text-align: left;
+        }
+
+        .tool-card:active, .btn-main:active {
+            transform: translateY(6px);
+            box-shadow: 0 0 0 var(--text-dark);
+        }
+
+        .card-icon {
+            width: 50px; height: 50px;
+            background: #f1f2f6;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 24px;
+            border: 2px solid var(--text-dark);
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        /* Color coding the icons */
+        .card-math .card-icon { background: #ffeaa7; }
+        .card-case .card-icon { background: #81ecec; }
+
+        .card-text h3 { margin: 0; font-size: 16px; font-weight: 800; }
+        .card-text p { margin: 2px 0 0; font-size: 11px; color: #636e72; font-weight: 600; }
+        
+        .arrow { margin-left: auto; font-weight: 800; color: var(--bg-purple); }
+
+        /* --- Views --- */
+        #returning-view { display: none; }
+        
+        .quote-box {
+            background: #fff8e1;
+            border: 2px dashed #ffb900;
+            padding: 12px;
+            border-radius: 12px;
+            margin: 15px 0 25px;
+            font-size: 12px;
+            font-style: italic;
+            color: #555;
+        }
+
+        .dev-footer {
+            margin-top: 10px; font-size: 13px; color: rgba(255, 255, 255, 0.9);
+            font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="floating-icon icon-1">⚡</div>
+    <div class="floating-icon icon-2">📝</div>
+    <div class="floating-icon icon-3">🎯</div>
+    <div class="floating-icon icon-4">📅</div>
+
+    <div class="container">
+        <div class="countdown-badge">
+            <span>⏳</span> <span id="days-left">00</span> Days to Exams
+        </div>
+
+        <div id="registration-view">
+            <h1>CBSE Question Bank</h1>
+            <p class="subtitle">Join 1,240+ students acing their prep.</p>
+
+            <form id="studentForm">
+                <div class="input-group">
+                    <span class="input-icon">👤</span>
+                    <input type="text" id="userName" placeholder="Full Name" required>
+                </div>
+                <div class="input-group">
+                    <span class="input-icon">🏫</span>
+                    <input type="text" id="userSchool" placeholder="School Name" required>
+                </div>
+                <div class="input-group">
+                    <span class="input-icon">📞</span>
+                    <input type="tel" id="userPhone" placeholder="Phone Number" required>
+                </div>
+                <button type="submit" id="submitBtn" class="btn-main">Proceed To Login ▶</button>
+            </form>
+        </div>
+
+        <div id="returning-view">
+            <h1 id="greeting-title">Good Morning,</h1>
+            <h2 id="display-name" style="color: var(--bg-purple); margin-top:0;">Student</h2>
+            
+            <div class="quote-box">
+                "💡 <span id="daily-quote">Loading motivation...</span>"
+            </div>
+
+            <div style="text-align: left; margin-bottom: 10px; font-weight: 800; font-size: 12px; color: #b2bec3;">AVAILABLE TOOLS:</div>
+
+            <a href="https://mathematics-revision.vercel.app" class="tool-card card-math">
+                <div class="card-icon">📐</div>
+                <div class="card-text">
+                    <h3>Maths Revision Dojo</h3>
+                    <p>Formulas & Rapid Practice</p>
+                </div>
+                <div class="arrow">▶</div>
+            </a>
+
+            <a href="https://case-question-bank-for-students.vercel.app" class="tool-card card-case">
+                <div class="card-icon">🕵️‍♀️</div>
+                <div class="card-text">
+                    <h3>Case Study Vault</h3>
+                    <p>Competency Question Bank</p>
+                </div>
+                <div class="arrow">▶</div>
+            </a>
+
+            <p style="margin-top:20px; font-size:12px; color:#aaa; cursor:pointer; text-decoration:underline;" onclick="logout()">Not you? Logout</p>
+        </div>
+    </div>
+
+    <div class="dev-footer">Developed By ICM Computers</div>
+
+<script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyE8NfuO7OeGWrI7XC_CQrTmuAzUfbMfZRIWPp5MGglFiSwBlJkIBXo-k8gDRFsezqQHw/exec";
+    
+    // 1. Countdown Logic
+    const examDate = new Date("2026-02-17"); 
+    const today = new Date();
+    const diffTime = examDate - today;
+    let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    if (diffDays < 0) diffDays = 0;
+    document.getElementById("days-left").innerText = diffDays;
+
+    // 2. Check User Status
+    window.onload = function() {
+        const savedName = localStorage.getItem('cbse_student_name');
+        
+        if (savedName) {
+            // Show Dashboard immediately
+            document.getElementById('registration-view').style.display = 'none';
+            document.getElementById('returning-view').style.display = 'block';
+            document.getElementById('display-name').innerText = savedName;
+            
+            // Set Greeting
+            const hour = new Date().getHours();
+            let greeting = "Good Morning,";
+            if(hour >= 12) greeting = "Good Afternoon,";
+            if(hour >= 17) greeting = "Good Evening,";
+            document.getElementById('greeting-title').innerText = greeting;
+
+            // Set Quote
+            const quotes = [
+                "Success is the sum of small efforts repeated daily.",
+                "Don't stop until you're proud.",
+                "Your future is created by what you do today."
+            ];
+            document.getElementById('daily-quote').innerText = quotes[Math.floor(Math.random() * quotes.length)];
+        }
+    };
+
+    // 3. Handle Registration
+    document.getElementById('studentForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.innerText = "Connecting...";
+        
+        const name = document.getElementById('userName').value;
+        const school = document.getElementById('userSchool').value;
+        const phone = document.getElementById('userPhone').value;
+
+        fetch(SCRIPT_URL, {
+            method: 'POST', mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, school, phone })
+        }).then(() => {
+            localStorage.setItem('cbse_student_name', name);
+            location.reload(); 
+        }).catch(err => {
+            alert("Error connecting. Please check internet.");
+            btn.innerText = "PROCEED TO LOGIN ▶";
+        });
+    });
+
+    function logout() {
+        if(confirm("Logout?")) {
+            localStorage.removeItem('cbse_student_name');
+            location.reload();
+        }
+    }
+</script>
+
+</body>
+</html>
