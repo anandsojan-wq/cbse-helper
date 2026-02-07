@@ -28,15 +28,14 @@
             background-color: var(--bg-color);
             background-image: radial-gradient(var(--bg-pattern) 15%, transparent 15%);
             background-size: 25px 25px;
-            /* Fix for scrolling issues on mobile */
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Aligns content to top */
+            justify-content: flex-start;
             align-items: center;
-            padding: 40px 20px; /* Adds breathing room */
+            padding: 40px 20px;
             box-sizing: border-box;
-            overflow-y: auto; /* Enables scrolling */
+            overflow-y: auto;
         }
 
         /* Floating Icons */
@@ -60,6 +59,14 @@
             border: 2px solid var(--glass-border); 
             margin-bottom: 20px;
             box-sizing: border-box;
+        }
+
+        /* LOGO STYLING */
+        .app-logo {
+            max-width: 160px; /* Adjust size here */
+            height: auto;
+            display: block;
+            margin: 0 auto 15px auto; /* Centers logo */
         }
 
         .streak-badge {
@@ -156,6 +163,8 @@
         <div class="countdown-badge"><span>⏳</span> <span id="days-left">00</span> Days to Exams</div>
 
         <div id="registration-view">
+            <img src="logo.png" alt="LIFT Logo" class="app-logo">
+            
             <h1>UPLIFT Class X</h1>
             <div class="social-proof">
                 <div class="avatar-pile">
@@ -180,6 +189,8 @@
         </div>
 
         <div id="returning-view">
+            <img src="logo.png" alt="LIFT Logo" class="app-logo">
+
             <h1 id="greeting-title">Good Morning,</h1>
             <h2 id="display-name" style="color: var(--bg-color); margin-top:0;">Student</h2>
             
