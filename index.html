@@ -28,11 +28,15 @@
             background-color: var(--bg-color);
             background-image: radial-gradient(var(--bg-pattern) 15%, transparent 15%);
             background-size: 25px 25px;
+            /* Fix for scrolling issues on mobile */
             min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: flex-start; /* Aligns content to top */
             align-items: center;
-            padding: 20px 0;
+            padding: 40px 20px; /* Adds breathing room */
+            box-sizing: border-box;
+            overflow-y: auto; /* Enables scrolling */
         }
 
         /* Floating Icons */
@@ -50,10 +54,12 @@
         .container {
             position: relative; z-index: 10;
             background: var(--glass-bg); backdrop-filter: blur(16px);
-            width: 90%; max-width: 420px;
+            width: 100%; max-width: 420px;
             border-radius: 24px; padding: 30px; text-align: center;
             box-shadow: 0 15px 35px var(--shadow);
-            border: 2px solid var(--glass-border); margin-bottom: 20px;
+            border: 2px solid var(--glass-border); 
+            margin-bottom: 20px;
+            box-sizing: border-box;
         }
 
         .streak-badge {
